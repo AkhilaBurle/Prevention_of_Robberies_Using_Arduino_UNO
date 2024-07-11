@@ -1,0 +1,91 @@
+Int trigpin1=13,trigpin2=12,trigpin3=11, trigpin4=10, 
+echopin1=7,echopin2=6,echopin3=5,echopin4=4;
+long time 1, time2,time3,time4;
+int distance 1, distance2, distance3, distance4; 
+void setup()
+{ 
+ pinMode(13,OUTPUT);
+ pinMode(12,OUTPUT);
+ pinMode(11,OUTPUT); 
+ pinMode(10,OUTPUT); 
+ pinMode(9,OUTPUT); 
+ pinMode(8,OUTPUT); 
+ pinMode(7,INPUT); 
+ pinMode(6,INPUT); 
+ pinMode(5,INPUT); 
+ pinMode(4,INPUT); 
+ Serial.begin(9600); 
+}
+int uss1() 
+{ 
+ digitalWrite(trigpin1, LOW); 
+ //delay(1000); 
+ digitalWrite(trigpin1, HIGH); //delay(1000); 
+ digitalWrite(trigpin1, LOW); 
+ time1=pulseln(echopin1,HIGH); 
+ distance1=time1*(0.034/2); 
+ Serial.print("distance1::"); 
+ Serial.print(distance1); 
+ Serial.print(" "); 
+ return distance1; 
+}
+int uss2() 
+{ 
+ digitalWrite(trigpin2, LOW); 
+ //delay(1000); 
+ digitalWrite(trigpin2, HIGH);
+ //delay(1000); 
+ digitalWrite(trigpin2, LOW); 
+ time2=pulseln(echopin2,HIGH); 
+ distance2=time2*(0.034/2); 
+ Serial.print("distance2::"); 
+ Serial.print(distance2); 
+ Serial.print(" "); 
+ return distance2; 
+}
+int uss3() 
+{ 
+ digitalWrite(trigpin3, LOW); 
+ //delay(1000); 
+ digitalWrite(trigpin3, HIGH);
+ //delay(1000); 
+ digitalWrite(trigpin3, LOW); 
+ time2=pulseln(echopin3,HIGH); 
+ distance3=time3*(0.034/2); 
+ Serial.print("distance3::"); 
+ Serial.print(distance3); 
+ Serial.print(" "); 
+ return distance3; 
+}
+int uss4() 
+{ 
+ digitalWrite(trigpin4, LOW); 
+ //delay(1000); 
+ digitalWrite(trigpin4, HIGH);
+ //delay(1000); 
+ digitalWrite(trigpin4, LOW); 
+ time2=pulseln(echopin4,HIGH); 
+ distance4=time4*(0.034/2); 
+ Serial.print("distance4::"); 
+ Serial.print(distance4); 
+ Serial.print(" "); 
+ return distance4; 
+}
+void loop() 
+{ 
+ int d1,d2,d3,d4; 
+ d1=uss1(); 
+ d2=uss2(); 
+ d3=uss3(); 
+ d4=uss4(); 
+ if((d1<=200)|(d2<=200)|(d3<=200)|(d4<=200)) 
+ { 
+  digitalWrite(9,HIGH); 
+  digitalWrite(8,HIGH); 
+ } 
+ else 
+ { 
+  digitalWrite(9,LOW); 
+  digitalWrite(8,LOW);
+ }
+}
